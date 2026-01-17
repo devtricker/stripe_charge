@@ -153,12 +153,19 @@ def process_payment(payment_method):
         log("💳 Processing payment via RedCross...", "pending")
         
         headers = {
-            'accept': '*/*',
-            'content-type': 'text/plain; charset=utf-8',
-            'origin': 'https://www.redcross.ca',
-            'referer': 'https://www.redcross.ca/',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-            'x-fru-embed-version': '260114-1526',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0',
+            'Accept': '*/*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Referer': 'https://give.redcross.ca/',
+            'x-fru-embed-version': '260114-1559',
+            'Origin': 'https://give.redcross.ca',
+            'Sec-Fetch-Storage-Access': 'none',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'cross-site',
+            'Connection': 'keep-alive',
+            'Priority': 'u=4',
         }
         
         data = json.dumps({"paymentMethod": payment_method})

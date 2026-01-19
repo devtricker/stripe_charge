@@ -434,14 +434,23 @@ def index():
 </html>
 """
 
-@app.route('/api/check', methods=['GET'])
+@app.route('/api/check', methods=['GET', 'POST'])
 def api_check():
-    cc = request.args.get('cc')
+    # Support both GET and POST for bot compatibility
+    if request.method == 'POST':
+        try:
+            data = request.get_json()
+            cc = data.get('card') or data.get('cc')
+        except:
+            cc = request.form.get('card') or request.form.get('cc')
+    else:
+        cc = request.args.get('cc') or request.args.get('card')
+
     if not cc:
         # No CC provided - keeping it quiet
         return jsonify({"status": "declined", "message": "No card provided"}), 400
         
-    log(f"🚀 MissionsToChildren Check: {cc[:6]}...", "pending")
+    log(f"🚀 Checking Card: {cc[:6]}...", "pending")
     result_raw = process_giving_hands(cc)
     
     # Logic to convert raw string result to Bot-Friendly JSON

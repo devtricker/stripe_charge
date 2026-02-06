@@ -17,16 +17,16 @@ PUBLIC_KEY = "pk_live_51LTAH3KQqBJAM2n1ywv46dJsjQWht8ckfcm7d15RiE8eIpXWXUvfshCKK
 
 # Proxy Pool
 PROXY_LIST = [
-    "142.111.48.253:7030:mytkdpjb:ttc6d7nnoao5",
-    "23.95.150.145:6114:mytkdpjb:ttc6d7nnoao5",
-    "198.23.239.134:6540:mytkdpjb:ttc6d7nnoao5",
-    "107.172.163.27:6543:mytkdpjb:ttc6d7nnoao5",
-    "198.105.121.200:6462:mytkdpjb:ttc6d7nnoao5",
-    "64.137.96.74:6641:mytkdpjb:ttc6d7nnoao5",
-    "84.247.60.125:6095:mytkdpjb:ttc6d7nnoao5",
-    "216.10.27.159:6837:mytkdpjb:ttc6d7nnoao5",
-    "23.26.71.145:5628:mytkdpjb:ttc6d7nnoao5",
-    "23.27.208.120:5830:mytkdpjb:ttc6d7nnoao5"
+"31.59.20.176:6754:devtronex:devtronexop",
+"23.95.150.145:6114:devtronex:devtronexop",
+"198.23.239.134:6540:devtronex:devtronexop",
+"45.38.107.97:6014:devtronex:devtronexop",
+"107.172.163.27:6543:devtronex:devtronexop",
+"198.105.121.200:6462:devtronex:devtronexop",
+"64.137.96.74:6641:devtronex:devtronexop",
+"216.10.27.159:6837:devtronex:devtronexop",
+"23.26.71.145:5628:devtronex:devtronexop",
+"23.229.19.94:8689:devtronex:devtronexop"
 ]
 
 def get_random_proxy():

